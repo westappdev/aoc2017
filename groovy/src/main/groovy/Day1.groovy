@@ -1,6 +1,6 @@
-class IvanDay1 {
+class Day1 {
 
-    static String PATH = "src/main/resources/IvanDay1.txt"
+    static String PATH = "src/main/resources/Day1.txt"
 
     String input(String path) {
         new File(path).text.trim()
@@ -25,7 +25,7 @@ class IvanDay1 {
     }
 
     static void main(String[] args) {
-        IvanDay1 a = new IvanDay1()
+        Day1 a = new Day1()
         String s = a.input(PATH)
         println a.result(s)
     }

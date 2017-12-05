@@ -1,17 +1,17 @@
 import spock.lang.Specification
 
-class IvanDay1Test extends Specification {
+class Day1Test extends Specification {
 
-    String PATH = "src/test/resources/TestInput.txt"
+    String PATH = "src/test/resources/Day1.txt"
 
     def "can read input"() {
         expect:
-        new IvanDay1().input(PATH) == "Hello world !"
+        new Day1().input(PATH) == "Hello world !"
     }
 
     def "calculate the the sum of consecutive matching digits"() {
         setup:
-        def a = new IvanDay1()
+        def a = new Day1()
 
         expect:
         a.result(s) == result
