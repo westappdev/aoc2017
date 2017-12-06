@@ -28,7 +28,6 @@ namespace AOC2017
         }
 
         static int RunCpuPart2(string[] input)
-
         {
             int[] instructions = Array.ConvertAll(input, s => int.Parse(s));
             int count = 0, pc = 0;
