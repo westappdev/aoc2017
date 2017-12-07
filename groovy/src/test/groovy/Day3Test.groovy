@@ -1,9 +1,5 @@
 import spock.lang.Specification
 
-/**
- * by imunteanu 
- * 12/5/17
- */
 class Day3Test extends Specification {
 
     def "calculate distance"() {
