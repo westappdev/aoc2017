@@ -10,16 +10,26 @@ namespace AOC2017
     {
         static void Main(string[] args)
         {
-            string[] input = File.ReadAllLines("BScottDay7.txt");
-            Node rootNode = ProcessList(input);
+            // Sample Problem
+            string[] input = File.ReadAllLines("BScottDay7Sample.txt");
 
+            Node rootNode = ProcessList(input);
+            Console.WriteLine($"Part 1 Example Answer: {rootNode.Name}");
+
+            int weightDifference = FindWeightDifference(rootNode);
+            Node badProgram = FindBadProgram(rootNode);
+            Console.WriteLine("Part 2 Example Answer: " + (badProgram.Weight + weightDifference));
+
+            // Main problem
+            input = File.ReadAllLines("BScottDay7.txt");
+            rootNode = ProcessList(input);
             Console.WriteLine($"Part 1 Answer: {rootNode.Name}");
 
             // I have no idea if this convoluted solution will work for other inputs,
             // but it's printing out the right answer and I am too tired and fed up with this
             // problem to care if it's not perfect.
-            int weightDifference = FindWeightDifference(rootNode);
-            Node badProgram = FindBadProgram(rootNode);
+            weightDifference = FindWeightDifference(rootNode);
+            badProgram = FindBadProgram(rootNode);
             Console.WriteLine("Part 2 Answer: " + (badProgram.Weight + weightDifference));
 
             Console.ReadLine();
@@ -108,8 +118,12 @@ namespace AOC2017
                     weights[i] = GetWeight(parentNode.ChildNodes[i]);
                 // find the least common weight
                 int result = weights.GroupBy(i => i).OrderBy(g => g.Count()).Select(g => g.Key).ToList().First();
-                // dig into the node with the uncommon weight
-                return FindBadProgram(parentNode.ChildNodes[Array.IndexOf(weights, result)]);
+                Node nextNode = parentNode.ChildNodes[Array.IndexOf(weights, result)];
+                if (nextNode.ChildNodes.Count > 0)
+                {
+                    // dig into the node with the uncommon weight
+                    return FindBadProgram(parentNode.ChildNodes[Array.IndexOf(weights, result)]);
+                }
             }
             return parentNode;
         }
