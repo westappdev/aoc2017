@@ -4,20 +4,19 @@ using System.Text;
 
 namespace AOC2017
 {
-    class BScottDay9
+    class BScottDay9 : BScottSolution
     {
-        
-        static void Main(string[] args)
+        public override string Name => "Day 9: Stream Processing";
+
+        public override void Run()
         {
             string input = File.ReadAllText("BScottDay9.txt");
 
             Tuple<int, int> processStreamResult = ProcessStream(input);
             Console.WriteLine($"Part 1 Answer: {processStreamResult.Item1}");
             Console.WriteLine($"Part 2 Answer: {processStreamResult.Item2}");
-
-            Console.ReadLine();
         }
-       
+
         static Tuple<int, int> ProcessStream(string input)
         {
             int total = 0, nestingLevel = 0;

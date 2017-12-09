@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 
 namespace AOC2017
 {
-    class BScottDay3
+    class BScottDay3 : BScottSolution
     {
-        static void Main(string[] args)
+        public override string Name => "Day 3: Spiral Memory";
+
+        public override void Run()
         {
             int value = 1;
             Console.WriteLine($"Value: {value}, Distance: {GetDistanceToAccessPortPart1(value)}");
@@ -24,8 +26,6 @@ namespace AOC2017
 
             value = 325489;
             Console.WriteLine($"Value: {value}, Distance: {GetDistanceToAccessPortPart1(value)}");
-
-            Console.ReadLine();
         }
 
         static int GetDistanceToAccessPortPart1(int value)

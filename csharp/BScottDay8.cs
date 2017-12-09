@@ -5,8 +5,10 @@ using System.Linq;
 
 namespace AOC2017
 {
-    class BScottDay8
+    class BScottDay8 : BScottSolution
     {
+        public override string Name => "Day 8: I Heard You Like Registers";
+
         private const int ARG_REG = 0;
         private const int ARG_OP = 1;
         private const int ARG_VALUE = 2;
@@ -15,9 +17,9 @@ namespace AOC2017
         private const int ARG_COND = 5;
         private const int ARG_COND_VAL = 6;
 
-        static void Main(string[] args)
+        public override void Run()
         {
-            string[] example =  new string[]
+            string[] example = new string[]
             {
                 "b inc 5 if a > 1",
                 "a inc 1 if b < 5",
@@ -34,8 +36,6 @@ namespace AOC2017
             Tuple<int, int> result = RunCpu(input);
             Console.WriteLine($"Part 1 Answer: {result.Item1}");
             Console.WriteLine($"Part 2 Answer: {result.Item2}");
-
-            Console.ReadLine();
         }
 
         static Tuple<int,int> RunCpu(string[] input)

@@ -6,9 +6,11 @@ using System.Text.RegularExpressions;
 
 namespace AOC2017
 {
-    class BScottDay7
+    class BScottDay7 : BScottSolution
     {
-        static void Main(string[] args)
+        public override string Name => "Day 7: Recursive Circus";
+
+        public override void Run()
         {
             // Sample Problem
             string[] input = File.ReadAllLines("BScottDay7Sample.txt");
@@ -31,8 +33,6 @@ namespace AOC2017
             weightDifference = FindWeightDifference(rootNode);
             badProgram = FindBadProgram(rootNode);
             Console.WriteLine("Part 2 Answer: " + (badProgram.Weight + weightDifference));
-
-            Console.ReadLine();
         }
 
         static Node ProcessList(string[] input)
