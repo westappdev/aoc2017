@@ -5,9 +5,11 @@ using System.Linq;
 
 namespace AOC2017
 {
-    class BScottDay6
+    class BScottDay6 : BScottSolution
     {
-        static void Main(string[] args)
+        public override string Name => "Day 6: Memory Reallocation";
+
+        public override void Run()
         {
             string input = File.ReadAllText("BScottDay6.txt");
             int[] banks = Array.ConvertAll(input.Split(new char[] { '\t' }), s => int.Parse(s));
@@ -15,8 +17,6 @@ namespace AOC2017
             RedistributeMemoryResult redistributeMemoryResult = RedistributeMemory(banks);
             Console.WriteLine($"Part 1 Answer: {redistributeMemoryResult.ReallocCount}");
             Console.WriteLine($"Part 2 Answer: {redistributeMemoryResult.RepeatLoopCount}");
-
-            Console.ReadLine();
         }
 
         static RedistributeMemoryResult RedistributeMemory(int[] banks)

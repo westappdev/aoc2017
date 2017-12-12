@@ -3,9 +3,11 @@ using System.IO;
 
 namespace AOC2017
 {
-    class BScottDay1
+    class BScottDay1 : BScottSolution
     {
-        static void Main(string[] args)
+        public override string Name => "Day 1: Inverse Captcha";
+
+        public override void Run()
         {
             string input = "1122";
             Console.WriteLine($"Example 1: {CalculateSumPart1(input)}");
@@ -22,8 +24,6 @@ namespace AOC2017
             input = File.ReadAllText("BScottDay1.txt");
             Console.WriteLine($"Part 1 Answer: {CalculateSumPart1(input)}");
             Console.WriteLine($"Part 2 Answer: {CalculateSumPart2(input)}");
-
-            Console.ReadLine();
         }
 
         static long CalculateSumPart1(string input)

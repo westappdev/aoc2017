@@ -3,14 +3,15 @@ using System.IO;
 
 namespace AOC2017
 {
-    class BScottDay5
+    class BScottDay5 : BScottSolution
     {
-        static void Main(string[] args)
+        public override string Name => "Day 5: A Maze of Twisty Trampolines, All Alike";
+
+        public override void Run()
         {
             string[] input = File.ReadAllLines("BScottDay5.txt");
             Console.WriteLine($"Part 1 Answer: {RunCpuPart1(input)}");
             Console.WriteLine($"Part 2 Answer: {RunCpuPart2(input)}");
-            Console.ReadLine();
         }
 
         static int RunCpuPart1(string[] input)

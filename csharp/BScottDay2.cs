@@ -4,14 +4,16 @@ using System.Linq;
 
 namespace AOC2017
 {
-    class BScottDay2
+    class BScottDay2 : BScottSolution
     {
-        static void Main(string[] args)
+        public override string Name => "Day 2: Corruption Checksum";
+
+        public override void Run()
         {
             string[] input = File.ReadAllLines("BScottDay2.txt");
+
             Console.WriteLine($"Part 1 Answer: {CalculateChecksumPart1(input)}");
             Console.WriteLine($"Part 2 Answer: {CalculateChecksumPart2(input)}");
-            Console.ReadLine();
         }
 
         static long CalculateChecksumPart1(string[] rows)

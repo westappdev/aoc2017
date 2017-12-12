@@ -1,38 +1,74 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AOC2017
 {
-    class BScottDay3
+    class BScottDay3 : BScottSolution
     {
-        static void Main(string[] args)
+        public override string Name => "Day 3: Spiral Memory";
+
+        public override void Run()
         {
-            int value = 1;
-            Console.WriteLine($"Value: {value}, Distance: {GetDistanceToAccessPortPart1(value)}");
+            Console.WriteLine($"Part 1 Example Answer #1 (1): {SpiralMemoryPart1(1)}");
+            Console.WriteLine($"Part 1 Example Answer #2 (12): {SpiralMemoryPart1(12)}");
+            Console.WriteLine($"Part 1 Example Answer #3 (23): {SpiralMemoryPart1(23)}");
+            Console.WriteLine($"Part 1 Example Answer #4 (1024): {SpiralMemoryPart1(1024)}");
 
-            value = 12;
-            Console.WriteLine($"Value: {value}, Distance: {GetDistanceToAccessPortPart1(value)}");
-
-            value = 23;
-            Console.WriteLine($"Value: {value}, Distance: {GetDistanceToAccessPortPart1(value)}");
-
-            value = 1024;
-            Console.WriteLine($"Value: {value}, Distance: {GetDistanceToAccessPortPart1(value)}");
-
-            value = 325489;
-            Console.WriteLine($"Value: {value}, Distance: {GetDistanceToAccessPortPart1(value)}");
-
-            Console.ReadLine();
+            int value = 325489; // Puzzle Input
+            Console.WriteLine($"Part 1 Answer: {SpiralMemoryPart1(value)}");
+            Console.WriteLine($"Part 2 Answer: {SpiralMemoryPart2(value)}");
         }
 
-        static int GetDistanceToAccessPortPart1(int value)
+        static int SpiralMemoryPart1(int value)
         {
-            Point start = new Point(0, 0);
-            Point x = GetPosition(value);
-            return Math.Abs(start.X - x.X) + Math.Abs(start.Y - x.Y);
+            Point position = GetPosition(value);
+            return Math.Abs(position.X) + Math.Abs(position.Y);
+        }
+
+        // Unfortunatly I can't take credit for solving this. This was ported and optimized slightly from a C function posted to github.
+        // Included this just for the sake of completion.
+        // Source: https://github.com/vesche/adventofcode-2017/blob/master/day03.c
+        // Integer Sequence: https://oeis.org/A141481/b141481.txt
+        static int SpiralMemoryPart2(int value)
+        {
+            int x = 0, y = 0, dx = 0, dy = -1;
+            int[,] array = new int[1000, 3];
+            int[,] coords = new int[,] { { 1, 0 }, { 1, -1 }, { 0, -1 }, { -1, -1 }, { -1, 0 }, { -1, 1 }, { 0, 1 }, { 1, 1 } };
+
+            for (int step = 0; step < 1000; step++)
+            {
+                int total = 0;
+
+                for (int i = 0; i < 1000; i++)
+                {
+                    int tx = array[i, 0];
+                    int ty = array[i, 1];
+
+                    for (int j = 0; j < 8; j++)
+                    {
+                        if ((x + coords[j, 0] == tx) && (y + coords[j, 1] == ty))
+                            total += array[i, 2];
+                    }
+                }
+
+                array[step, 0] = x;
+                array[step, 1] = y;
+                array[step, 2] = (x == 0 && y == 0) ? 1 : total;
+
+                if (total > value)
+                    return total;
+
+                if ((x == y) || ((x < 0) && (x == -y)) || ((x > 0) && (x == 1 - y)))
+                {
+                    int dxtmp = dx;
+                    dx = -dy;
+                    dy = dxtmp;
+                }
+
+                x += dx;
+                y += dy;
+            }
+
+            return -1;
         }
 
         // Inverse ulam spiral coords
