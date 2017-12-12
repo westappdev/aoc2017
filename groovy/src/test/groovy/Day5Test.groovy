@@ -15,6 +15,6 @@ class Day5Test extends Specification {
         Day5 app = new Day5()
 
         then:
-        app.advancedCount([2, 3, 2, 3, -1]) == 10
+        app.advancedCount([0, 3, 0, 1, -3]) == 10
     }
 }
