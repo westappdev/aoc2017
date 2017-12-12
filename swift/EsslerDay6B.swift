@@ -8,8 +8,6 @@ var cyclesDelta = 0
 var inputArr = input.split(separator:"\t").map{Int($0)!}
 var stateHx  = [[Int]]()
 stateHx.append(inputArr)
-var cycleHx  = [Int]()
-cycleHx.append(cycles)
 
 while (true) {
 	let maxVal = inputArr.max()!
@@ -35,7 +33,6 @@ while (true) {
 	}
 	
 	stateHx.append(inputArr)
-	cycleHx.append(cycles)
 }
 
 print(cyclesDelta)
