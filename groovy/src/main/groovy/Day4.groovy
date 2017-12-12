@@ -34,6 +34,4 @@ class Day4 {
         Set<String> setWords = new HashSet<>(words)
         return words.size() == setWords.size()
     }
-
-
 }
